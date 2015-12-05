@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+}
+
+#board {
+    width: 600px;
+    height: 600px;
+    background-color: pink;
+}
+
+.tiles {
+    width: 200px;
+    height: 50px;
+    background-color: black;
+    position: absolute;
+    color: white;
+}
+
+.tiles.top {
+    left: 200px;
+}
+
+.tiles.right {
+    top: 275px;
+    left: 400px;
+}
+
+.tiles.bottom {
+    top: 550px;
+    left: 200px;
+}
+
+.tiles.left {
+    top: 275px;
+}
+
+.tiles.middle {
+    top: 200px;
+    left: 200px;
+    height: 200px;
+}
+
+.tile {
+    float: left;
+    margin-right: 4px;
+}
