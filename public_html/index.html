@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="css/hanabi.css" />
@@ -13,26 +8,37 @@ and open the template in the editor.
     </head>
     <body>
         <div id="board">
-            <div id ="players">
-                <div class="tiles top">
-                    <div>top</div>
-                </div>
-                <div class="tiles right">
-                    <div>right</div>
-                </div>
-                <div class="tiles bottom">
-                    <div>bottom</div>
-                </div>
-                <div class="tiles left">
-                    <div>left</div>
-                </div>
-            </div>
-            <div id = "pile" class="tiles middle">
+            <div id ="players"></div>
+            <div id="middle" class="tiles middle">
                 <div>middle</div>
             </div>
+            <div id="played" class="tiles played">
+                <div>played</div>
+            </div>
+            <div id="discarded" class="tiles discarded">
+                <div>discarded</div>
+            </div>
             <div id="info">
+                <div id="score"></div>
                 <div id="clues"></div>
                 <div id="oops"></div>
+            </div>
+            <div id="play" class="action">Play tile</div>
+            <div id="discard" class="action">Discard tile</div>
+            <div id="clue" class="action">Give clue</div>
+            <!--for debugging-->
+            <br>
+            <div>
+                <span>Next to Give: </span>
+                <span id="nextPlay"></span>
+            </div>
+            <div>
+                <span>Last Play: </span>
+                <span id="lastPlay"></span>
+            </div>
+            <div>
+                <span>Valid: </span>
+                <span id="valid"></span>
             </div>
         </div>
         <script type="text/javascript" src="js/hanabi.js"></script>
