@@ -43,11 +43,22 @@ function shuffle(array) {
 
 function initializeBoard() {
     var tiles = shuffle(makeTiles());
-    var players = document.getElementById("board").children;
-    var numPlayers = players.length - 1;
+    //var players = document.getElementById("board").children;
+    var players = document.getElementById("players").children;
+    var middle = document.getElementById("pile");
+    
+    //var numPlayers = players.length - 1;
+    var numPlayers = players.length;
     tiles.forEach(function(tile, idx) {
-        players[(idx < 4 * numPlayers) ? (idx % numPlayers) : numPlayers].appendChild(tile);
-    });
+        if (idx < 4*numPlayers){
+            players[idx%numPlayers].appendChild(tile);
+        }
+        else {
+            middle.appendChild(tile);
+        }
+    });        
+//        players[(idx < 4 * numPlayers) ? (idx % numPlayers) : numPlayers].appendChild(tile); //error here
+//    });
     document.getElementById("clues").textContent = "Clues: 8";
     document.getElementById("oops").textContent = "Oops remaining: 3";
 }
