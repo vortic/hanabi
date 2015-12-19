@@ -1,1 +1,4 @@
 nbproject/*
+*.map
+public_html/css/*
+public_html/js/*

@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+}
+
+.hidden {
+    display: none !important;
+    padding: 10px;
+}
+
+.action {
+    cursor: pointer;
+}
+
+#board {
+    width: 600px;
+    height: 600px;
+    background-color: pink;
+}
+
+.tiles {
+    width: 198px;
+    height: 48px;
+    background-color: black;
+    position: absolute;
+    color: white;
+    border: 1px solid white;
+
+    &.top {
+        left: 200px;
+    }
+
+    &.right {
+        top: 275px;
+        left: 400px;
+    }
+
+    &.bottom {
+        top: 550px;
+        left: 200px;
+    }
+
+    &.left {
+        top: 275px;
+    }
+
+    &.middle {
+        left: 600px;
+        height: 198px;
+    }
+
+    &.played {
+        top: 100px;
+        left: 200px;
+        height: 148px;
+
+        .pile {
+            width: 90px;
+            float: left;
+        }
+    }
+
+    &.discarded {
+        top: 300px;
+        left: 200px;
+        height: 198px;
+    }
+}
+
+.pile {
+    min-width: 90px;
+    height: 36px;
+    overflow: auto;
+}
+
+.tile {
+    float: left;
+    margin-right: 4px;
+}
