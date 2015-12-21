@@ -1,12 +1,24 @@
+import Pile = require("Pile");
 import Util = require("Util");
 
 class Tile {
     node: HTMLElement;
+    discardNode: HTMLElement;
     constructor(public color: string, public number: number) {
         this.node = document.createElement("span");
         this.node.className = "tile";
         this.node.textContent = String(this.number);
         this.node.style.color = color;
+        this.discardNode = document.createElement("span");
+        this.discardNode.className = "discard-area";
+        this.discardNode.textContent = "D";
+        this.node.appendChild(this.discardNode);
+    }
+    toggleActive(active?: boolean) {
+        this.node.classList.toggle("action", active);
+    }
+    isPlayable() {
+        return Pile.piles.played.highestPlayed[this.color] === this.number - 1;
     }
 }
 

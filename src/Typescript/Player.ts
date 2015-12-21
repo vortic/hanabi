@@ -12,31 +12,48 @@ class Player {
         typeNode.textContent = this.type;
         this.node.appendChild(typeNode);
     }
-    playTile(piles: Pile.Piles, idx: number, discard = false) {
-        var toPlay = this.tiles[idx];
-        toPlay.node.parentNode.removeChild(toPlay.node);
-        this.tiles.splice(idx, 1);
+    addTile(tile: Tile) {
+        tile.node.classList.remove("played");
+        this.tiles.push(tile);
+        this.node.appendChild(tile.node);
+        tile.toggleActive(true);
+        tile.node.onclick = (event) => {
+            this.playTile(tile, event.target === tile.discardNode);
+        };
+    }
+    removeTile(tile: Tile) {
+        tile.toggleActive(false);
+        tile.node.onclick = null;
+        tile.discardNode.classList.add("hidden");
+    }
+    playTile(tile: Tile, discard = false) {
+        var piles = Pile.piles;
+        this.removeTile(tile);
+        this.tiles.splice(this.tiles.indexOf(tile), 1);
         var toGive = piles.middle.tiles.pop();
         if (toGive) {
-            toGive.node.parentNode.removeChild(toGive.node);
-            this.tiles.push(toGive);
-            this.node.appendChild(toGive.node);
-            var next = piles.middle.tiles[piles.middle.tiles.length - 1];
-            Util.byId("nextPlay").style.color = next.node.style.color;
-            Util.byId("nextPlay").textContent = next.node.textContent;
+            this.addTile(toGive);
+            Util.updateNext(piles.middle.tiles[piles.middle.tiles.length - 1]); // for debugging
         }
-        var playable = Util.isPlayable(toPlay, piles.played);
-        var color = toPlay.node.style.color;
-        Util.byId("lastPlay").style.color = color;
-        Util.byId("lastPlay").textContent = toPlay.node.textContent;
-        Util.byId("valid").textContent = String(playable);
-        var pile = discard || ! playable ? piles.discarded : piles.played;
-        pile.colors[color].appendChild(toPlay.node);
-        pile.tiles.push(toPlay);
-        if (playable) {
-            piles.played.highestPlayed[color]++;
+        var playable = tile.isPlayable();
+        Util.updateLastPlay(tile); // for debugging
+        (discard || ! playable ? piles.discarded : piles.played).addTile(tile);
+        if (! discard) {
+            if (playable) {
+                piles.played.highestPlayed[tile.color]++;
+                Util.incrementScore();
+                if (tile.number === 5) {
+                    Util.getClue();
+                }
+            } else {
+                Util.decrementOops();
+            }
+        } else {
+            Util.getClue();
         }
-        return playable;
+        if (Util.score >= 25) {
+            alert("You win!");
+        }
     }
 }
 

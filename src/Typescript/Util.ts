@@ -1,14 +1,5 @@
 // These imports are potentially circular dependencies--use for type declarations only.
-import Pile = require("Pile");
 import Tile = require("Tile");
-
-export function byId(id: string) {
-    return document.getElementById(id);
-}
-
-export function isPlayable(tile: Tile, played: Pile) {
-    return played.highestPlayed[tile.node.style.color] === +tile.node.textContent - 1;
-}
 
 // taken from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 export function shuffle(array: any[]) {
@@ -30,3 +21,45 @@ export function shuffle(array: any[]) {
 
 export var colors = ["red", "white", "yellow", "green", "blue"];
 export var numbers = [1, 2, 3, 4, 5];
+export var numClues = 8;
+export var numOops = 3;
+export var score = 0;
+
+export function byId(id: string) {
+    return document.getElementById(id);
+}
+
+export function getClue() {
+    numClues = Math.min(8, numClues + 1);
+    byId("clues").textContent = "Clues: " + numClues;
+}
+
+export function giveClue() {
+    numClues = Math.max(0, numClues - 1);
+    byId("clues").textContent = "Clues: " + numClues;
+}
+
+export function incrementScore() {
+    score++;
+    byId("score").textContent = "Score: " + score;
+}
+
+export function decrementOops() {
+    numOops--;
+    byId("oops").textContent = "Oops remaining: " + numOops;
+}
+
+// for debugging
+
+export function updateNext(next: Tile) {
+    if (next) {
+        byId("nextPlay").style.color = next.color;
+        byId("nextPlay").textContent = String(next.number);
+    }
+}
+
+export function updateLastPlay(tile: Tile) {
+    byId("lastPlay").style.color = tile.color;
+    byId("lastPlay").textContent = String(tile.number);
+    byId("valid").textContent = String(tile.isPlayable());
+}

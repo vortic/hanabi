@@ -23,15 +23,14 @@ class Pile {
             this.node.appendChild(playedColor);
         });
     }
+    addTile(tile: Tile) {
+        this.tiles.push(tile);
+        this.colors[tile.node.style.color].appendChild(tile.node);
+        tile.node.classList.add("played");
+    }
 }
 
 module Pile {
-
-export interface Piles {
-    middle: Pile;
-    played: Pile;
-    discarded: Pile;
-}
 
 export var piles = {
     middle: new Pile("middle"),

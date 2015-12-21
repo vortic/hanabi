@@ -17,6 +17,10 @@ body {
     background-color: pink;
 }
 
+#clue {
+    display: inline-block;
+}
+
 .tiles {
     width: 198px;
     height: 48px;
@@ -50,11 +54,12 @@ body {
 
     &.played {
         top: 100px;
-        left: 200px;
+        left: 199px;
+        width: 200px;
         height: 148px;
 
         .pile {
-            width: 90px;
+            width: 100px;
             float: left;
         }
     }
@@ -74,5 +79,14 @@ body {
 
 .tile {
     float: left;
-    margin-right: 4px;
+    width: 40px;
+
+    &.played {
+        width: 20px;
+    }
+
+    .discard-area {
+        float: right;
+        width: 20px;
+    }
 }
