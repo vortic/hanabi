@@ -15,7 +15,7 @@ class Pile {
         Util.colors.forEach((color) => {
             var playedColor = document.createElement("div");
             playedColor.className = "pile";
-            playedColor.style.color = color;
+            playedColor.style.color = Util.colorMap[color];
             var playedColorName = document.createElement("div");
             playedColorName.textContent = color;
             playedColor.appendChild(playedColorName);
@@ -25,7 +25,7 @@ class Pile {
     }
     addTile(tile: Tile) {
         this.tiles.push(tile);
-        this.colors[tile.node.style.color].appendChild(tile.node);
+        this.colors[tile.color].appendChild(tile.node);
         tile.node.classList.add("played");
     }
 }

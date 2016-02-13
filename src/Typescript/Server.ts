@@ -6,7 +6,7 @@ class Server {
     constructor(public numPlayers: number, public players: Player[]) {
         this.currentPlayer = 0;
     }
-    tilePlayed() {
+    turnTaken() {
         this.currentPlayer = (this.currentPlayer + 1) % this.numPlayers;
         Util.byId("current-player").textContent = "Current Player: "
             + this.players[this.currentPlayer].position;
@@ -19,8 +19,8 @@ export function init(numPlayers: number, players: Player[]) {
     server = new Server(numPlayers, players);
 }
 
-export function tilePlayed() {
-    server.tilePlayed();
+export function turnTaken() {
+    server.turnTaken();
 }
 
 export function currentPlayer() {

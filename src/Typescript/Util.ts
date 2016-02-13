@@ -25,12 +25,12 @@ export var numClues = 8;
 export var numOops = 3;
 export var score = 0;
 
-export var colorMap = {
+export var colorMap: {[color: string]: string} = {
     red: "#CE3131",
-    white: "#1BC1C4",
-    yellow: "#28873D",
-    green: "#EAEDD5",
-    blue: "#EAE317",
+    white: "#EAEDD5",
+    yellow: "#EAE317",
+    green: "#28873D",
+    blue: "#1BC1C4",
 }
 
 export function byId(id: string) {
@@ -61,13 +61,13 @@ export function decrementOops() {
 
 export function updateNext(next: Tile) {
     if (next) {
-        byId("nextPlay").style.color = next.color;
+        byId("nextPlay").style.color = colorMap[next.color];
         byId("nextPlay").textContent = String(next.number);
     }
 }
 
 export function updateLastPlay(tile: Tile) {
-    byId("lastPlay").style.color = tile.color;
+    byId("lastPlay").style.color = colorMap[tile.color];
     byId("lastPlay").textContent = String(tile.number);
     byId("valid").textContent = String(tile.isPlayable());
 }

@@ -8,7 +8,7 @@ class Player {
     tiles: Tile[] = [];
     constructor(public position: string, public index: number) {
         this.node = document.createElement("div");
-        this.node.className = "tiles " + this.position;
+        this.node.className = "hand " + this.position;
         var positionNode = document.createElement("div");
         positionNode.textContent = this.position;
         this.node.appendChild(positionNode);
@@ -60,7 +60,7 @@ class Player {
         } else if (Util.numOops === 0) {
             alert("You lose!");
         }
-        Server.tilePlayed();
+        Server.turnTaken();
     }
 }
 
@@ -71,8 +71,11 @@ export function makePlayers(numPlayers: number) {
     if (numPlayers > 2) {
         positions.push("left", "right");
     }
-    if (numPlayers === 2 || numPlayers > 3) {
+    if (numPlayers === 2) {
         positions.push("top");
+    }
+    if (numPlayers > 3) {
+        positions.splice(2, 0, "top");
     }
     var players: Player[] = [];
     positions.forEach(function(position, idx) {

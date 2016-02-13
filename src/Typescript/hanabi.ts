@@ -18,7 +18,10 @@ function initializeBoard(numPlayers: number) {
     Util.byId("oops").textContent = "Oops remaining: " + Util.numOops;
 
     Util.byId("clue").onclick = function() {
-        Util.giveClue();
+        if (Util.numClues > 0) {
+            Util.giveClue();
+            Server.turnTaken();
+        }
     };
 
     // for debugging
