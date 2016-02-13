@@ -25,6 +25,14 @@ export var numClues = 8;
 export var numOops = 3;
 export var score = 0;
 
+export var colorMap = {
+    red: null,
+    white: null,
+    yellow: null,
+    green: null,
+    blue: null,
+}
+
 export function byId(id: string) {
     return document.getElementById(id);
 }

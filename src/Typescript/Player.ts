@@ -1,16 +1,17 @@
 import Pile = require("Pile");
+import Server = require("Server");
 import Tile = require("Tile");
 import Util = require("Util");
 
 class Player {
     node: HTMLElement;
     tiles: Tile[] = [];
-    constructor(public type: string) {
+    constructor(public position: string, public index: number) {
         this.node = document.createElement("div");
-        this.node.className = "tiles " + this.type;
-        var typeNode = document.createElement("div");
-        typeNode.textContent = this.type;
-        this.node.appendChild(typeNode);
+        this.node.className = "tiles " + this.position;
+        var positionNode = document.createElement("div");
+        positionNode.textContent = this.position;
+        this.node.appendChild(positionNode);
     }
     addTile(tile: Tile) {
         tile.node.classList.remove("played");
@@ -27,6 +28,9 @@ class Player {
         tile.discardNode.classList.add("hidden");
     }
     playTile(tile: Tile, discard = false) {
+        if (this.index !== Server.currentPlayer()) {
+            return;
+        }
         var piles = Pile.piles;
         this.removeTile(tile);
         this.tiles.splice(this.tiles.indexOf(tile), 1);
@@ -53,7 +57,10 @@ class Player {
         }
         if (Util.score >= 25) {
             alert("You win!");
+        } else if (Util.numOops === 0) {
+            alert("You lose!");
         }
+        Server.tilePlayed();
     }
 }
 
@@ -68,8 +75,8 @@ export function makePlayers(numPlayers: number) {
         positions.push("top");
     }
     var players: Player[] = [];
-    positions.forEach(function(position) {
-        var player = new Player(position);
+    positions.forEach(function(position, idx) {
+        var player = new Player(position, idx);
         Util.byId("players").appendChild(player.node);
         players.push(player);
     });

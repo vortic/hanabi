@@ -8,7 +8,7 @@ class Tile {
         this.node = document.createElement("span");
         this.node.className = "tile";
         this.node.textContent = String(this.number);
-        this.node.style.color = color;
+        this.node.style.color = Util.colorMap[color];
         this.discardNode = document.createElement("span");
         this.discardNode.className = "discard-area";
         this.discardNode.textContent = "D";
