@@ -26,11 +26,11 @@ export var numOops = 3;
 export var score = 0;
 
 export var colorMap = {
-    red: null,
-    white: null,
-    yellow: null,
-    green: null,
-    blue: null,
+    red: "#CE3131",
+    white: "#1BC1C4",
+    yellow: "#28873D",
+    green: "#EAEDD5",
+    blue: "#EAE317",
 }
 
 export function byId(id: string) {
