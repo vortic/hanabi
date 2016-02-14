@@ -27,9 +27,9 @@ function initializeBoard(numPlayers: number) {
     // for debugging
     Util.updateNext(piles.middle.tiles[piles.middle.tiles.length - 1]);
 
-    Server.init(numPlayers, players);
+    Server.init(players);
 
-    Util.byId("current-player").textContent = players[Server.currentPlayer()].position;
+    Util.byId("current-player").textContent = players[Server.currentPlayer].position;
 }
 
 initializeBoard(4);

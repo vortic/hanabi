@@ -13,14 +13,18 @@ class Player {
         positionNode.textContent = this.position;
         this.node.appendChild(positionNode);
     }
+    myTurn(yes = true) {
+        this.tiles.forEach((tile) => {
+            tile.toggleActive(yes);
+            tile.node.onclick = yes ? (event) => {
+                this.playTile(tile, event.target === tile.discardNode);
+            } : null;
+        });
+    }
     addTile(tile: Tile) {
         tile.node.classList.remove("played");
         this.tiles.push(tile);
         this.node.appendChild(tile.node);
-        tile.toggleActive(true);
-        tile.node.onclick = (event) => {
-            this.playTile(tile, event.target === tile.discardNode);
-        };
     }
     removeTile(tile: Tile) {
         tile.toggleActive(false);
@@ -28,7 +32,7 @@ class Player {
         tile.discardNode.classList.add("hidden");
     }
     playTile(tile: Tile, discard = false) {
-        if (this.index !== Server.currentPlayer()) {
+        if (this.index !== Server.currentPlayer) {
             return;
         }
         var piles = Pile.piles;
@@ -60,7 +64,7 @@ class Player {
         } else if (Util.numOops === 0) {
             alert("You lose!");
         }
-        Server.turnTaken();
+        Server.turnTaken(tile, discard);
     }
 }
 
