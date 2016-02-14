@@ -143,9 +143,5 @@ body {
 .pile {
     min-width: 90px;
     height: 36px;
-    overflow: auto;
-}
-
-.right {
-    float: right;
+    overflow: hidden;
 }
