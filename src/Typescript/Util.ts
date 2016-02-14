@@ -39,22 +39,22 @@ export function byId(id: string) {
 
 export function getClue() {
     numClues = Math.min(8, numClues + 1);
-    byId("clues").textContent = "Clues: " + numClues;
+    byId("clues").textContent = String(numClues);
 }
 
 export function giveClue() {
     numClues = Math.max(0, numClues - 1);
-    byId("clues").textContent = "Clues: " + numClues;
+    byId("clues").textContent = String(numClues);
 }
 
 export function incrementScore() {
     score++;
-    byId("score").textContent = "Score: " + score;
+    byId("score").textContent = String(score);
 }
 
 export function decrementOops() {
     numOops--;
-    byId("oops").textContent = "Oops remaining: " + numOops;
+    byId("oops").textContent = String(numOops);
 }
 
 // for debugging

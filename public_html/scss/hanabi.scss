@@ -1,17 +1,20 @@
 //Typography
 $body-font-size:    16px;
 $body-line-height:  1.5;
+//Colors
+$gray: #dddddd;
 //Content
 $board-width:       800px;
 $tile-bg-color:     #191716;
+$border:            1px solid $gray;
 $spacing:           30px;
 
-//Colors
-$gray: #eeeeee;
-
+// Reset styles
+body, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
 
 body {
-    margin: 0;
     font-size: $body-font-size;
 }
 
@@ -33,14 +36,28 @@ body {
 .scoreboard {
     width: $board-width;
     height: 60px;
+    padding: $spacing / 4;
+    margin: 0 auto;
     margin-bottom: $spacing;
-    border: 1px solid $gray;
+    border: $border;
     box-sizing: border-box;
+}
+
+.scoreboard-item {
+    width: 20%;
+    margin-right: 5%;
+    display: inline-block;
+    overflow: hidden;
+
+    &:last-child {
+        margin-right: 0;
+    }
 }
 
 #board {
     width: $board-width;
     height: 600px;
+    margin: 0 auto;
     background-color: pink;
 }
 
@@ -48,11 +65,17 @@ body {
     display: inline-block;
 }
 
+// Played and discared tiles go here
+.playing-field {
+    width: 50%;
+    height: auto;
+    background-color: $tile-bg-color;
+}
+
 .hand {
     width: 198px;
     height: 48px;
     background-color: $tile-bg-color;
-    position: absolute;
     color: white;
     border: 1px solid white;
 
@@ -75,15 +98,21 @@ body {
     }
 
     &.middle {
-        left: 600px;
+        position: fixed;
+        right: 0;
+        top: 0;
         height: 198px;
     }
 
+    &.played, &.discarded {
+        width: 50%;
+        height: 200px;
+        float: left;
+        box-sizing: border-box;
+    }
+
     &.played {
-        top: 100px;
-        left: 199px;
-        width: 200px;
-        height: 148px;
+        //height: 148px;
 
         .pile {
             width: 100px;
@@ -92,15 +121,14 @@ body {
     }
 
     &.discarded {
-        top: 300px;
-        left: 200px;
-        height: 198px;
+        //height: 148px;
     }
 }
 
 .tile {
     float: left;
     width: 40px;
+    border-right: $border;
 
     &.played {
         width: 20px;
@@ -116,4 +144,8 @@ body {
     min-width: 90px;
     height: 36px;
     overflow: auto;
+}
+
+.right {
+    float: right;
 }

@@ -13,9 +13,9 @@ function initializeBoard(numPlayers: number) {
         (idx < 4 * numPlayers ? players[idx % numPlayers] : piles.middle).addTile(tile);
     });
 
-    Util.byId("score").textContent = "Score: " + Util.score;
-    Util.byId("clues").textContent = "Clues: " + Util.numClues;
-    Util.byId("oops").textContent = "Oops remaining: " + Util.numOops;
+    Util.byId("score").textContent = String(Util.score);
+    Util.byId("clues").textContent = String(Util.numClues);
+    Util.byId("oops").textContent = String(Util.numOops);
 
     Util.byId("clue").onclick = function() {
         if (Util.numClues > 0) {
@@ -29,8 +29,7 @@ function initializeBoard(numPlayers: number) {
 
     Server.init(numPlayers, players);
 
-    Util.byId("current-player").textContent = "Current Player: "
-            + players[Server.currentPlayer()].position;
+    Util.byId("current-player").textContent = players[Server.currentPlayer()].position;
 }
 
 initializeBoard(4);

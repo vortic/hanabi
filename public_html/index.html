@@ -7,27 +7,44 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div class="scoreboard">
+        <div class="scoreboard info">
+            <div class="scoreboard-item">
+                <h4>Clues</h4>
+                <div id="clues"></div>
+            </div>
+            <div class="scoreboard-item">
+                <h4>Oops Remaining</h4>
+                <div id="oops"></div>
+            </div>
+            <div class="scoreboard-item">
+                <h4>Score</h4>
+                <div id="score"></div>
+            </div>
+            <div class="scoreboard-item">
+                <h4>Turn</h4>
+                <div id="current-player"></div>
+            </div>
         </div>
 
         <div id="board">
             <div id ="players"></div>
-            <div id="middle" class="hand middle">
-                <div>middle</div>
+
+            <div class="playing-field">
+                <div id="played" class="hand played">
+                    <div>played</div>
+                </div>
+                <div id="discarded" class="hand discarded">
+                    <div>discarded</div>
+                </div>
             </div>
-            <div id="played" class="hand played">
-                <div>played</div>
-            </div>
-            <div id="discarded" class="hand discarded">
-                <div>discarded</div>
-            </div>
-            <div id="info">
+            <!-- <div id="info">
                 <div id="current-player"></div>
                 <div id="score"></div>
                 <div id="clues"></div>
                 <div id="oops"></div>
-            </div>
+            </div> -->
             <div id="clue" class="action">Give clue</div>
+
             <!--for debugging-->
             <div></div>
             <br>
@@ -45,6 +62,11 @@
                 <span id="valid"></span>
             </div>
         </div><!-- board -->
+
+        <div id="middle" class="hand middle">
+            <div>middle</div>
+        </div>
+
         <script type="text/javascript" data-main="js/hanabi.js" src="require.js"></script>
     </body>
 </html>
