@@ -44,11 +44,11 @@ body {
 .scoreboard {
     width: $board-width;
     height: 60px;
-    padding: $spacing / 4;
-    margin: 0 auto;
-    margin-bottom: $spacing / 2;
-    border: $border;
     box-sizing: border-box;
+    margin: ($spacing / 2) auto;
+    padding: $spacing / 4;
+    border: $border;
+    border-radius: 3px;
 }
 
 .scoreboard-item {
@@ -67,6 +67,7 @@ body {
     width: $board-width;
     height: $board-height;
     margin: 0 auto;
+    border-radius: 3px;
     background-color: pink;
 }
 
@@ -142,8 +143,9 @@ body {
 
 .tile {
     display: inline-block;
-    padding: 10px;
     margin-right: 10px;
+    padding: $spacing / 3;
+    border-radius: 3px;
 
     &:last-child {
       margin-right: 0;
