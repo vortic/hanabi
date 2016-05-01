@@ -5,9 +5,11 @@ class Tile {
     node: HTMLElement;
     numberNode: HTMLElement;
     discardNode: HTMLElement;
+    clueNumber = "?";
+    clueColor = "pink";
     constructor(public color: string, public number: number) {
         this.node = document.createElement("span");
-        this.node.className = "tile";
+        this.node.className = "tile action";
         this.node.style.color = Util.colorMap[color];
         this.numberNode = document.createElement("span");
         this.numberNode.textContent = String(this.number);
@@ -18,9 +20,8 @@ class Tile {
         this.node.appendChild(this.discardNode);
     }
     toggleActive(active?: boolean) {
-        this.node.classList.toggle("action", active);
-        this.numberNode.textContent = active ? "?" : String(this.number);
-        this.node.style.color = active ? "pink" : Util.colorMap[this.color];
+        this.numberNode.textContent = active ? this.clueNumber : String(this.number);
+        this.node.style.color = active ? this.clueColor : Util.colorMap[this.color];
     }
     isPlayable() {
         return Pile.piles.played.highestPlayed[this.color] === this.number - 1;

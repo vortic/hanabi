@@ -17,13 +17,6 @@ function initializeBoard(numPlayers: number) {
     Util.byId("clues").textContent = String(Util.numClues);
     Util.byId("oops").textContent = String(Util.numOops);
 
-    Util.byId("clue").onclick = function() {
-        if (Util.numClues > 0) {
-            Util.giveClue();
-            Server.turnTaken();
-        }
-    };
-
     // for debugging
     Util.updateNext(piles.middle.tiles[piles.middle.tiles.length - 1]);
 

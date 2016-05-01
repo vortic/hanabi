@@ -16,15 +16,22 @@ class Player {
     myTurn(yes = true) {
         this.tiles.forEach((tile) => {
             tile.toggleActive(yes);
-            tile.node.onclick = yes ? (event) => {
-                this.playTile(tile, event.target === tile.discardNode);
-            } : null;
+            tile.node.onclick = yes
+                ? (event) => {
+                    this.playTile(tile, event.target === tile.discardNode);
+                }
+                : () => {
+                    this.receiveClue(tile, event.target === tile.discardNode);
+                };
         });
     }
     addTile(tile: Tile) {
         tile.node.classList.remove("played");
         this.tiles.push(tile);
         this.node.appendChild(tile.node);
+        tile.node.onclick = (event) => {
+            this.receiveClue(tile, event.target === tile.discardNode);
+        };
     }
     removeTile(tile: Tile) {
         tile.toggleActive(false);
@@ -64,7 +71,35 @@ class Player {
         } else if (Util.numOops === 0) {
             alert("You lose!");
         }
-        Server.turnTaken(tile, discard);
+        Server.turnTaken({
+            player: this,
+            tile,
+            discard
+        });
+    }
+    receiveClue(tile: Tile, color: boolean) {
+        var indices: number[] = [];
+        this.tiles.forEach((t, i) => {
+            var canClue = false;
+            if (color && t.color === tile.color) {
+                t.clueColor = tile.color;
+                canClue = true;
+            }
+            if (! color && t.number === tile.number) {
+                t.clueNumber = String(tile.number);
+                canClue = true;
+            }
+            if (canClue) {
+                indices.push(i);
+            }
+        });
+        Util.giveClue();
+        Server.turnTaken({
+            player: this,
+            tile,
+            clueType: color ? tile.color : tile.number,
+            indices
+        });
     }
 }
 

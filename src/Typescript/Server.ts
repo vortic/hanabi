@@ -16,15 +16,42 @@ export function init(p: Player[]) {
     players[currentPlayer].myTurn();
 }
 
-export function turnTaken(tile?: Tile, discard = false) {
-    var clue = ! tile;
+interface TurnInfo {
+    player: Player;
+    tile: Tile;
+    discard?: boolean;
+    // the number or color being clued
+    clueType?: number|string;
+    // which tile(s) the clue applies to
+    indices?: number[];
+}
+
+export function turnTaken(turnInfo: TurnInfo) {
     var turn = document.createElement("div");
     turn.textContent = "Player " + players[currentPlayer].position + " "
-            + (clue ? "Clued" : discard ? "Discarded" : "Played") + " ";
-    if (tile) {
+            + (turnInfo.clueType
+                    ? "Clued player " + turnInfo.player.position + " on "
+                    : turnInfo.discard ? "Discarded" : "Played") + " ";
+    if (turnInfo.tile) {
+        var clueOnNumber = typeof(turnInfo.clueType) === "number";
+        var clueOnColor = typeof(turnInfo.clueType) === "string";
+        var textContent = String(turnInfo.tile.number) + (turnInfo.clueType ? "s" : "");
+        if (clueOnColor) {
+            textContent = turnInfo.tile.color;
+        }
+        if (turnInfo.clueType) {
+            textContent +=
+                    " ("
+                    + turnInfo.indices.map(i => ["first", "second", "third", "fourth"][i]).join(", ")
+                    + ")";
+        }
+        var color = Util.colorMap[turnInfo.tile.color];
+        if (clueOnNumber) {
+            color = "";
+        }
         var tileDescription = document.createElement("span");
-        tileDescription.textContent = String(tile.number);
-        tileDescription.style.color = Util.colorMap[tile.color];
+        tileDescription.textContent = textContent;
+        tileDescription.style.color = color;
         turn.appendChild(tileDescription);
     }
     Util.byId("turn-log").appendChild(turn);
@@ -32,7 +59,7 @@ export function turnTaken(tile?: Tile, discard = false) {
     currentPlayer = (currentPlayer + 1) % players.length;
     Util.byId("current-player").textContent = players[currentPlayer].position;
     players[currentPlayer].myTurn();
-    if (! clue) {
+    if (! turnInfo.clueType) {
         tilesRemaining = Math.max(0, tilesRemaining - 1);
     }
     if (tilesRemaining === 0) {
