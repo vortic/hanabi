@@ -15,8 +15,8 @@ class Pile {
         Util.colors.forEach((color) => {
             var playedColor = document.createElement("div");
             playedColor.className = "pile";
-            playedColor.style.color = Util.colorMap[color];
             var playedColorName = document.createElement("div");
+            playedColorName.style.color = Util.colorMap[color];
             playedColorName.textContent = color;
             playedColor.appendChild(playedColorName);
             this.colors[color] = playedColor;
