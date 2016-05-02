@@ -31,6 +31,7 @@ export var colorMap: {[color: string]: string} = {
     yellow: "#EAE317",
     green: "#28873D",
     blue: "#1BC1C4",
+    pink: "pink"
 }
 
 export function byId(id: string) {

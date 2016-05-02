@@ -21,7 +21,7 @@ class Tile {
     }
     toggleActive(active?: boolean) {
         this.numberNode.textContent = active ? this.clueNumber : String(this.number);
-        this.node.style.backgroundColor = active ? this.clueColor : Util.colorMap[this.color];
+        this.node.style.backgroundColor = Util.colorMap[active ? this.clueColor : this.color];
     }
     isPlayable() {
         return Pile.piles.played.highestPlayed[this.color] === this.number - 1;
