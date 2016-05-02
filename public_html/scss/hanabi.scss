@@ -16,8 +16,7 @@ $border:            1px solid $gray;
 $spacing:           30px;
 
 // Reset styles
-body, ul,
-h1, h2, h3, h4, h5, h6 {
+body, ul, h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
@@ -28,7 +27,6 @@ body {
 
 .hidden {
     display: none !important;
-    padding: 10px;
 }
 
 .action {
@@ -81,14 +79,18 @@ body {
     text-align: center;
     color: white;
 
-    &.top,
-    &.bottom {
-        left: ($board-width/2) - ($hand-width/2);
+    > ul {
+        list-style: none;
+        margin-top: $spacing / 3;
+        padding-left: 0;
     }
 
-    &.left,
-    &.right {
-        top: ($board-height/2) - ($hand-height/2);
+    &.top, &.bottom {
+        left: ($board-width / 2) - ($hand-width / 2);
+    }
+
+    &.left, &.right {
+        top: ($board-height / 2) - ($hand-height / 2);
     }
 
     &.right {
@@ -127,12 +129,6 @@ body {
     &.discarded {
         bottom: $hand-height + $spacing*2;
     }
-}
-
-.hand > ul {
-    list-style: none;
-    margin-top: $spacing / 3;
-    padding-left: 0;
 }
 
 .tile {
