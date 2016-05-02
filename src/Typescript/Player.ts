@@ -30,6 +30,7 @@ class Player {
     }
     addTile(tile: Tile) {
         tile.node.classList.remove("played");
+        tile.node.classList.add("action");
         this.tiles.push(tile);
         this.handNode.appendChild(tile.node);
         tile.node.onclick = (event) => {

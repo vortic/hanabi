@@ -9,7 +9,7 @@ class Tile {
     clueColor = "pink";
     constructor(public color: string, public number: number) {
         this.node = document.createElement("li");
-        this.node.className = "tile action";
+        this.node.className = "tile";
         this.node.style.backgroundColor = Util.colorMap[color];
         this.numberNode = document.createElement("span");
         this.numberNode.textContent = String(this.number);

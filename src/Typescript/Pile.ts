@@ -27,6 +27,7 @@ class Pile {
         this.tiles.push(tile);
         this.colors[tile.color].appendChild(tile.node);
         tile.node.classList.add("played");
+        tile.node.classList.remove("action");
     }
 }
 
