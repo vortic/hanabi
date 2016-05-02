@@ -8,9 +8,9 @@ class Tile {
     clueNumber = "?";
     clueColor = "pink";
     constructor(public color: string, public number: number) {
-        this.node = document.createElement("span");
+        this.node = document.createElement("li");
         this.node.className = "tile action";
-        this.node.style.color = Util.colorMap[color];
+        this.node.style.backgroundColor = Util.colorMap[color];
         this.numberNode = document.createElement("span");
         this.numberNode.textContent = String(this.number);
         this.node.appendChild(this.numberNode);
@@ -21,7 +21,7 @@ class Tile {
     }
     toggleActive(active?: boolean) {
         this.numberNode.textContent = active ? this.clueNumber : String(this.number);
-        this.node.style.color = active ? this.clueColor : Util.colorMap[this.color];
+        this.node.style.backgroundColor = active ? this.clueColor : Util.colorMap[this.color];
     }
     isPlayable() {
         return Pile.piles.played.highestPlayed[this.color] === this.number - 1;

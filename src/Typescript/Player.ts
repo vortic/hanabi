@@ -5,6 +5,7 @@ import Util = require("Util");
 
 class Player {
     node: HTMLElement;
+    handNode: HTMLElement;
     tiles: Tile[] = [];
     constructor(public position: string, public index: number) {
         this.node = document.createElement("div");
@@ -12,6 +13,8 @@ class Player {
         var positionNode = document.createElement("div");
         positionNode.textContent = this.position;
         this.node.appendChild(positionNode);
+        this.handNode = document.createElement("ul");
+        this.node.appendChild(this.handNode);
     }
     myTurn(yes = true) {
         this.tiles.forEach((tile) => {
@@ -28,7 +31,7 @@ class Player {
     addTile(tile: Tile) {
         tile.node.classList.remove("played");
         this.tiles.push(tile);
-        this.node.appendChild(tile.node);
+        this.handNode.appendChild(tile.node);
         tile.node.onclick = (event) => {
             this.receiveClue(tile, event.target === tile.discardNode);
         };

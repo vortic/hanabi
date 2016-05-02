@@ -1,20 +1,28 @@
 //Typography
 $body-font-size:    16px;
 $body-line-height:  1.5;
+$body-font:         Helvetica;
 //Colors
 $gray: #dddddd;
 //Content
 $board-width:       800px;
-$tile-bg-color:     #191716;
+$board-height:      600px;
+$hand-width:        250px;
+$hand-height:       70px;
+$pile-height:       160px;
+$pile-width:        250px;
+$pile-bg-color:     #191716;
 $border:            1px solid $gray;
 $spacing:           30px;
 
 // Reset styles
-body, h1, h2, h3, h4, h5, h6 {
+body, ul,
+h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
 body {
+    font-family: $body-font;
     font-size: $body-font-size;
 }
 
@@ -27,20 +35,14 @@ body {
     cursor: pointer;
 }
 
-// .wrapper {
-//     padding-top: $spacing;
-//     margin: 0 auto;
-//     width: 100%;
-// }
-
 .scoreboard {
     width: $board-width;
     height: 60px;
-    padding: $spacing / 4;
-    margin: 0 auto;
-    margin-bottom: $spacing;
-    border: $border;
     box-sizing: border-box;
+    margin: ($spacing / 2) auto;
+    padding: $spacing / 4;
+    border: $border;
+    border-radius: 3px;
 }
 
 .scoreboard-item {
@@ -55,9 +57,11 @@ body {
 }
 
 #board {
+    position: relative;
     width: $board-width;
-    height: 600px;
+    height: $board-height;
     margin: 0 auto;
+    border-radius: 3px;
     background-color: pink;
 }
 
@@ -65,36 +69,34 @@ body {
     display: inline-block;
 }
 
-// Played and discared tiles go here
-.playing-field {
-    width: 50%;
-    height: auto;
-    background-color: $tile-bg-color;
+#players {
+    position: relative;
+    height: $board-height;
 }
 
 .hand {
-    width: 198px;
-    height: 48px;
-    background-color: $tile-bg-color;
+    position: absolute;
+    width: $hand-width;
+    height: $hand-height;
+    text-align: center;
     color: white;
-    border: 1px solid white;
 
-    &.top {
-        left: 200px;
+    &.top,
+    &.bottom {
+        left: ($board-width/2) - ($hand-width/2);
+    }
+
+    &.left,
+    &.right {
+        top: ($board-height/2) - ($hand-height/2);
     }
 
     &.right {
-        top: 275px;
-        left: 400px;
+        right: 0;
     }
 
     &.bottom {
-        top: 550px;
-        left: 200px;
-    }
-
-    &.left {
-        top: 275px;
+        bottom: 0;
     }
 
     &.middle {
@@ -102,17 +104,15 @@ body {
         right: 0;
         top: 0;
         height: 198px;
+        background-color: $pile-bg-color;
     }
 
     &.played, &.discarded {
-        width: 50%;
-        height: 200px;
-        float: left;
+        left: $board-width/2 - $pile-width/2;
+        width: $pile-width;
+        height: $pile-height;
         box-sizing: border-box;
-    }
-
-    &.played {
-        //height: 148px;
+        background-color: $pile-bg-color;
 
         .pile {
             width: 100px;
@@ -120,15 +120,30 @@ body {
         }
     }
 
+    &.played {
+        top: $hand-height + $spacing*2;
+    }
+
     &.discarded {
-        //height: 148px;
+        bottom: $hand-height + $spacing*2;
     }
 }
 
+.hand > ul {
+    list-style: none;
+    margin-top: $spacing / 3;
+    padding-left: 0;
+}
+
 .tile {
-    float: left;
-    width: 40px;
-    border-right: $border;
+    display: inline-block;
+    margin-right: 10px;
+    padding: $spacing / 3;
+    border-radius: 3px;
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     &.played {
         width: 20px;
