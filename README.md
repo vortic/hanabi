@@ -2,16 +2,26 @@
 
 This is our first attempt to make a webapp for hanabi.
 
-### Setup for Typescript/Sass
+### Quick start
 
-Here is what you need to install:
+Install [node.js](https://nodejs.org/en/) (I installed 5.3.0). Then:
+
+```sh
+git clone git@github.com:vortic/hanabi.git
+cd hanabi
+npm install typescript node-sass  # TODO: need to put this in package.json
+make  # also should go into package.json
+open public_html/index.html  # or your OS' equivalent command for "open"
+```
+
+### If using netbeans
+
+Install the dependencies globally:
 
 1. [node.js](https://nodejs.org/en/) (I installed 5.3.0)
 2. [sass](http://sass-lang.com/install) (I used the command line for Mac)
 3. install typescript: sudo npm install -g typescript
 4. [netbeans typescript plugin](https://github.com/Everlaw/nbts/releases) (the nbm file)
-
-### If using netbeans
 
 To configure everything, open netbeans:
 
