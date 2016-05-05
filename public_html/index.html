@@ -30,10 +30,10 @@
             <div id ="players"></div>
 
             <div id="played" class="hand played">
-                <div>played</div>
+                <h3>Played</h3>
             </div>
             <div id="discarded" class="hand discarded">
-                <div>discarded</div>
+                <h3>Discarded</h3>
             </div>
 
             <!--for debugging-->
@@ -53,9 +53,11 @@
         </div><!-- board -->
 
         <div id="middle" class="hand middle">
-            <div>middle</div>
+            <h3>Remaining</h3>
         </div>
-        <div id="turn-log">Log</div>
+        <div id="turn-log" class="log">
+          <h3>Played Log</h3>
+        </div>
         <script type="text/javascript" data-main="js/hanabi.js" src="require.js"></script>
     </body>
 </html>
