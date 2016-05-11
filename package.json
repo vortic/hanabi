@@ -1,0 +1,25 @@
+{
+  "name": "hanabi",
+  "version": "1.0.0",
+  "description": "Hanabi!",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vortic/hanabi.git"
+  },
+  "author": "Victor",
+  "bugs": {
+    "url": "https://github.com/vortic/hanabi/issues"
+  },
+  "homepage": "https://github.com/vortic/hanabi#readme",
+  "devDependencies": {
+    "typescript": "*",
+    "node-sass": "*"
+  }
+}

@@ -4,5 +4,4 @@ public_html/css/*
 public_html/js/*
 .sass-cache
 gulpfile.js
-package.json
 node_modules

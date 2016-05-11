@@ -9,7 +9,7 @@ Install [node.js](https://nodejs.org/en/) (I installed 5.3.0). Then:
 ```sh
 git clone git@github.com:vortic/hanabi.git
 cd hanabi
-npm install typescript node-sass  # TODO: need to put this in package.json
+npm install
 make  # also should go into package.json
 open public_html/index.html  # or your OS' equivalent command for "open"
 ```
