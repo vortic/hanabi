@@ -9,7 +9,7 @@ $board-width:       800px;
 $board-height:      600px;
 $hand-width:        250px;
 $hand-height:       70px;
-$pile-height:       160px;
+$pile-height:       180px;
 $pile-width:        250px;
 $pile-bg-color:     #191716;
 $border:            1px solid $gray;
@@ -23,6 +23,10 @@ body, ul, h1, h2, h3, h4, h5, h6 {
 body {
     font-family: $body-font;
     font-size: $body-font-size;
+}
+
+h1, h2, h3 {
+    font-weight: 200;
 }
 
 .hidden {
@@ -78,6 +82,7 @@ body {
     height: $hand-height;
     text-align: center;
     color: white;
+    border-radius: 3px;
 
     > ul {
         list-style: none;
@@ -105,7 +110,7 @@ body {
         position: fixed;
         right: 0;
         top: 0;
-        height: 198px;
+        height: auto;
         background-color: $pile-bg-color;
     }
 
@@ -123,18 +128,18 @@ body {
     }
 
     &.played {
-        top: $hand-height + $spacing*2;
+        top: $hand-height + $spacing;
     }
 
     &.discarded {
-        bottom: $hand-height + $spacing*2;
+        bottom: $hand-height + $spacing;
     }
 }
 
 .tile {
     display: inline-block;
     margin-right: 10px;
-    padding: $spacing / 3;
+    padding: 8px 10px;
     border-radius: 3px;
 
     &:last-child {
@@ -142,7 +147,7 @@ body {
     }
 
     &.played {
-        width: 20px;
+        padding: 4px 6px;
     }
 
     .discard-area {
@@ -151,8 +156,9 @@ body {
     }
 }
 
-.pile {
-    min-width: 90px;
-    height: 36px;
-    overflow: hidden;
+.log {
+    position: fixed;
+    top: $spacing / 2;
+    left: $spacing / 2;
+    width: 250px;
 }
