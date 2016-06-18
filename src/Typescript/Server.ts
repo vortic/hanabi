@@ -28,14 +28,15 @@ interface TurnInfo {
 
 export function turnTaken(turnInfo: TurnInfo) {
     var turn = document.createElement("div");
-    turn.textContent = "Player " + players[currentPlayer].position + " "
+    turn.className += "mb-2";
+    turn.textContent = players[currentPlayer].position + " "
             + (turnInfo.clueType
-                    ? "Clued player " + turnInfo.player.position + " on "
-                    : turnInfo.discard ? "Discarded" : "Played") + " ";
+                    ? "clued " + turnInfo.player.position + " on "
+                    : turnInfo.discard ? "discarded" : "played") + " ";
     if (turnInfo.tile) {
         var clueOnNumber = typeof(turnInfo.clueType) === "number";
         var clueOnColor = typeof(turnInfo.clueType) === "string";
-        var textContent = String(turnInfo.tile.number) + (turnInfo.clueType ? "s" : "");
+        var textContent = String(turnInfo.tile.number) + (turnInfo.clueType ? "" : "");
         if (clueOnColor) {
             textContent = turnInfo.tile.color;
         }
@@ -43,7 +44,7 @@ export function turnTaken(turnInfo: TurnInfo) {
             textContent +=
                     " ("
                     + turnInfo.indices.map(i => ["first", "second", "third", "fourth"][i]).join(", ")
-                    + ")";
+                    + " tile)";
         }
         var color = Util.colorMap[turnInfo.tile.color];
         if (clueOnNumber) {
@@ -51,7 +52,10 @@ export function turnTaken(turnInfo: TurnInfo) {
         }
         var tileDescription = document.createElement("span");
         tileDescription.textContent = textContent;
-        tileDescription.style.color = color;
+        if (!clueOnNumber) {
+            tileDescription.className = "inline-tile font-color-white";
+            tileDescription.style.backgroundColor = color;
+        }
         turn.appendChild(tileDescription);
     }
     Util.byId("turn-log").appendChild(turn);
