@@ -1,19 +1,4 @@
-//Typography
-$body-font-size:    16px;
-$body-line-height:  1.5;
-$body-font:         Helvetica;
-//Colors
-$gray: #dddddd;
-//Content
-$board-width:       800px;
-$board-height:      600px;
-$hand-width:        250px;
-$hand-height:       70px;
-$pile-height:       180px;
-$pile-width:        250px;
-$pile-bg-color:     #191716;
-$border:            1px solid $gray;
-$spacing:           30px;
+@import "variables";
 
 // Reset styles
 body, ul, h1, h2, h3, h4, h5, h6 {
@@ -23,6 +8,7 @@ body, ul, h1, h2, h3, h4, h5, h6 {
 body {
     font-family: $body-font;
     font-size: $body-font-size;
+    color: $body-font-color;
 }
 
 h1, h2, h3 {
@@ -115,7 +101,7 @@ h1, h2, h3 {
     }
 
     &.played, &.discarded {
-        left: $board-width/2 - $pile-width/2;
+        left: ($board-width / 2) - ($pile-width / 2);
         width: $pile-width;
         height: $pile-height;
         box-sizing: border-box;
@@ -156,9 +142,57 @@ h1, h2, h3 {
     }
 }
 
+.inline-tile, .inline-tile-blank {
+    display: inline-block;
+    margin: 0 2px;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.inline-tile {
+    color: white;
+}
+
+.inline-tile-blank {
+    color: $body-font-color;
+    border: $border;
+}
+
 .log {
     position: fixed;
-    top: $spacing / 2;
-    left: $spacing / 2;
+    top: 0;
+    left: 0;
     width: 250px;
+    height: 100vh;
+    background-color: white;
+    overflow: scroll;
+    border-right: $border;
+}
+
+.log-row {
+    padding: ($spacing / 3) ($spacing / 2);
+
+    &:hover {
+        background-color: $light-gray;
+        cursor: pointer;
+    }
+}
+
+h3.log-row:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  // Remove scrollbar space
+}
+
+// Utility classes
+.font-small {
+    font-size: $body-font-small;
+    line-height: 1.3;
+}
+
+.font-color-black {
+    color: $body-font-color;
 }

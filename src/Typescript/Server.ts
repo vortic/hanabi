@@ -28,14 +28,15 @@ interface TurnInfo {
 
 export function turnTaken(turnInfo: TurnInfo) {
     var turn = document.createElement("div");
-    turn.textContent = "Player " + players[currentPlayer].position + " "
+    turn.className += "log-row";
+    turn.textContent = players[currentPlayer].position + " "
             + (turnInfo.clueType
-                    ? "Clued player " + turnInfo.player.position + " on "
-                    : turnInfo.discard ? "Discarded" : "Played") + " ";
+                    ? "clued " + turnInfo.player.position + " on "
+                    : turnInfo.discard ? "discarded" : "played") + " ";
     if (turnInfo.tile) {
         var clueOnNumber = typeof(turnInfo.clueType) === "number";
         var clueOnColor = typeof(turnInfo.clueType) === "string";
-        var textContent = String(turnInfo.tile.number) + (turnInfo.clueType ? "s" : "");
+        var textContent = String(turnInfo.tile.number);
         if (clueOnColor) {
             textContent = turnInfo.tile.color;
         }
@@ -43,15 +44,18 @@ export function turnTaken(turnInfo: TurnInfo) {
             textContent +=
                     " ("
                     + turnInfo.indices.map(i => ["first", "second", "third", "fourth"][i]).join(", ")
-                    + ")";
+                    + " tile)";
         }
         var color = Util.colorMap[turnInfo.tile.color];
+        var tileDescription = document.createElement("span");
         if (clueOnNumber) {
             color = "";
+            tileDescription.className = "inline-tile-blank";
+        } else {
+            tileDescription.className = "inline-tile" + (Util.colorMap["white"] === color ? " font-color-black" : "");
         }
-        var tileDescription = document.createElement("span");
         tileDescription.textContent = textContent;
-        tileDescription.style.color = color;
+        tileDescription.style.backgroundColor = color;
         turn.appendChild(tileDescription);
     }
     Util.byId("turn-log").appendChild(turn);
