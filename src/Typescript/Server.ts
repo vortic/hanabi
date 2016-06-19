@@ -28,7 +28,7 @@ interface TurnInfo {
 
 export function turnTaken(turnInfo: TurnInfo) {
     var turn = document.createElement("div");
-    turn.className += "mb-2";
+    turn.className += "log-row";
     turn.textContent = players[currentPlayer].position + " "
             + (turnInfo.clueType
                     ? "clued " + turnInfo.player.position + " on "
@@ -36,7 +36,7 @@ export function turnTaken(turnInfo: TurnInfo) {
     if (turnInfo.tile) {
         var clueOnNumber = typeof(turnInfo.clueType) === "number";
         var clueOnColor = typeof(turnInfo.clueType) === "string";
-        var textContent = String(turnInfo.tile.number) + (turnInfo.clueType ? "" : "");
+        var textContent = String(turnInfo.tile.number);
         if (clueOnColor) {
             textContent = turnInfo.tile.color;
         }
@@ -47,15 +47,16 @@ export function turnTaken(turnInfo: TurnInfo) {
                     + " tile)";
         }
         var color = Util.colorMap[turnInfo.tile.color];
+        var tileDescription = document.createElement("span");
         if (clueOnNumber) {
             color = "";
+            tileDescription.className = "inline-tile-blank";
+        } else {
+            tileDescription.className = "inline-tile" + (color == "#EAEDD5" ? " font-color-black" : "");
         }
-        var tileDescription = document.createElement("span");
         tileDescription.textContent = textContent;
-        if (!clueOnNumber) {
-            tileDescription.className = "inline-tile font-color-white";
-            tileDescription.style.backgroundColor = color;
-        }
+        tileDescription.style.backgroundColor = color;
+        console.log(color);
         turn.appendChild(tileDescription);
     }
     Util.byId("turn-log").appendChild(turn);

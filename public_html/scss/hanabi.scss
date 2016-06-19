@@ -8,14 +8,11 @@ body, ul, h1, h2, h3, h4, h5, h6 {
 body {
     font-family: $body-font;
     font-size: $body-font-size;
+    color: $body-font-color;
 }
 
 h1, h2, h3 {
     font-weight: 200;
-}
-
-h3 {
-    margin-bottom: $spacing / 3;
 }
 
 .hidden {
@@ -145,28 +142,49 @@ h3 {
     }
 }
 
-.inline-tile {
+.inline-tile, .inline-tile-blank {
     display: inline-block;
     margin: 0 2px;
     padding: 2px 5px;
-    color: white;
     border-radius: 3px;
+}
+
+.inline-tile {
+    color: white;
+}
+
+.inline-tile-blank {
+    color: $body-font-color;
+    border: $border;
 }
 
 .log {
     position: fixed;
     top: 0;
-    left: 02;
+    left: 0;
     width: 250px;
     height: 100vh;
-    padding: $spacing / 2;
     background-color: white;
     overflow: scroll;
     border-right: $border;
 }
 
+.log-row {
+    padding: $spacing/3 $spacing/2;
+
+    &:hover {
+        background-color: $light-gray;
+        cursor: pointer;
+    }
+}
+
+h3.log-row:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
 ::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
+    width: 0px;  // Remove scrollbar space
 }
 
 // Utility classes
@@ -175,6 +193,6 @@ h3 {
     line-height: 1.3;
 }
 
-.mb-2 {
-    margin-bottom: $spacing / 2;
+.font-color-black {
+    color: $body-font-color;
 }
