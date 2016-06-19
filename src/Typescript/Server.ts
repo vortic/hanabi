@@ -58,7 +58,7 @@ interface GameState {
 
 export function init(numPlayers: number) {
     client.request({
-        url: "http://127.0.0.1:5000/games/0",
+        url: BASE_URL + "/0",
         method: "GET",
         content: "",
         success: (responseText: string) => {
