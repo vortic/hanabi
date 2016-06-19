@@ -56,7 +56,6 @@ export function turnTaken(turnInfo: TurnInfo) {
         }
         tileDescription.textContent = textContent;
         tileDescription.style.backgroundColor = color;
-        console.log(color);
         turn.appendChild(tileDescription);
     }
     Util.byId("turn-log").appendChild(turn);
