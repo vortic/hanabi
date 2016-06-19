@@ -52,7 +52,7 @@ export function turnTaken(turnInfo: TurnInfo) {
             color = "";
             tileDescription.className = "inline-tile-blank";
         } else {
-            tileDescription.className = "inline-tile" + (Util.colorMap["white"] ? " font-color-black" : "");
+            tileDescription.className = "inline-tile" + (Util.colorMap["white"] === color ? " font-color-black" : "");
         }
         tileDescription.textContent = textContent;
         tileDescription.style.backgroundColor = color;
