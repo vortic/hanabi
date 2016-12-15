@@ -31,8 +31,12 @@ class Player {
     addTile(tile: Tile) {
         tile.node.classList.remove("played");
         tile.node.classList.add("action");
-        this.tiles.push(tile);
-        this.handNode.appendChild(tile.node);
+        if (this.tiles.length) {
+            this.handNode.insertBefore(tile.node, this.tiles[0].node);
+        } else {
+            this.handNode.appendChild(tile.node);
+        }
+        this.tiles.unshift(tile);
         tile.node.onclick = (event) => {
             this.receiveClue(tile, event.target === tile.discardNode);
         };
@@ -82,6 +86,10 @@ class Player {
         });
     }
     receiveClue(tile: Tile, color: boolean) {
+        if (Util.numClues === 0) {
+            alert("There are no more clues--you must play or discard.");
+            return;
+        }
         var indices: number[] = [];
         this.tiles.forEach((t, i) => {
             var canClue = false;
